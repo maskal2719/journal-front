@@ -5,7 +5,9 @@
         <div class="student-info__avatar">
           <img src="" alt="" />
         </div>
-        <span class="student-name">ФИО: {{ props.student.fullName }}</span>
+        <span class="student-name">Фамилия: {{ props.student.lastName }}</span>
+        <span class="student-name">Имя: {{ props.student.firstName }}</span>
+        <span class="student-name">Отчество: {{ props.student.middleName }}</span>
         <span class="student-birthdate">{{
           formatDate(props.student.birthDate)
         }}</span>

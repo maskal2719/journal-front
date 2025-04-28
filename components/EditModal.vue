@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { useStudentStore } from "~/stores/studentStore";
 import { ref } from "vue";
+import type {StudentType} from "~/types/Student";
 
 const props = defineProps<{
   label: string;
-  student: any;
+  student: StudentType;
 }>();
 
 const isOpen = ref(false);
@@ -15,7 +16,9 @@ const formatDate = (isoDate: string) => {
 };
 
 const formData = ref({
-  fullName: props.student.fullName,
+  lastName: props.student.lastName,
+  firstName: props.student.firstName,
+  middleName: props.student.middleName,
   birthDate: formatDate(props.student.birthDate), // Форматируем дату
   class: props.student.class,
 });
@@ -47,7 +50,9 @@ const updateStudent = async () => {
 
       <UModal v-model="isOpen">
         <div class="p-4 m-4 flex gap-2 flex-col">
-          <UInput v-model="formData.fullName" placeholder="ФИО Студента" />
+          <UInput v-model="formData.lastName" placeholder="Фамилия" />
+          <UInput v-model="formData.firstName" placeholder="Имя" />
+          <UInput v-model="formData.middleName" placeholder="Отчество" />
           <UInput
             v-model="formData.birthDate"
             placeholder="Дата рождения"

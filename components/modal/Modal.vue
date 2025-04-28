@@ -10,16 +10,16 @@ const studentStore = useStudentStore();
 
 const isOpen = ref(false);
 const formData = ref({
-  fullName: "",
+  lastName: "",
+  firstName: "",
+  middleName: "",
   birthDate: "",
-  class: "",
+  classNumber: '',
+  classLetter: '',
   gender: "",
 });
 const classes = ["5", "6", "7", "8", "9"];
 const letters = ["А", "Б", "В", "Г", "Д"];
-const studentClass = ref("5");
-const studentClassNumber = ref("А");
-
 const selectGender = (gender: string) => {
   formData.value.gender = gender;
 };
@@ -28,7 +28,6 @@ const createStudent = async () => {
   try {
     const studentData = {
       ...formData.value,
-      class: studentClass.value + studentClassNumber.value,
     };
 
     // Добавляем студента через хранилище
@@ -39,9 +38,12 @@ const createStudent = async () => {
 
     // Очищаем форму
     formData.value = {
-      fullName: "",
+      lastName: "",
+      firstName: "",
+      middleName: "",
       birthDate: "",
-      class: "",
+      classNumber: '',
+      classLetter: '',
       gender: "",
     };
 
@@ -60,15 +62,17 @@ const createStudent = async () => {
 
       <UModal v-model="isOpen">
         <div class="p-4 m-4 flex gap-2 flex-col">
-          <UInput v-model="formData.fullName" placeholder="ФИО Студента" />
+          <UInput v-model="formData.lastName" placeholder="Фамилия" />
+          <UInput v-model="formData.firstName" placeholder="Имя" />
+          <UInput v-model="formData.middleName" placeholder="Отчество" />
           <UInput
             v-model="formData.birthDate"
             placeholder="Дата рождения"
             type="date"
           />
           <div class="flex gap-2">
-            <USelect v-model="studentClass" :options="classes" />
-            <USelect v-model="studentClassNumber" :options="letters" />
+            <USelect v-model="formData.classNumber" :options="classes" />
+            <USelect v-model="formData.classLetter" :options="letters" />
           </div>
           <div class="flex gap-2">
             <UCheckbox

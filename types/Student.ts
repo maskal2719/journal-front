@@ -1,7 +1,10 @@
 export interface StudentType {
   id: number;
-  fullName: string;
-  birthDate: Date;
-  class: string;
+  lastName: string;
+  firstName: string;
+  middleName: string;
+  birthDate: Date | string;
+  classNumber: number;
+  classLetter: string;
   gender: string;
 }

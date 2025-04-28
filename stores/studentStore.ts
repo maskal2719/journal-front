@@ -18,7 +18,7 @@ export const useStudentStore = defineStore("student", () => {
   // Добавление студента
   const addStudent = async (student: any) => {
     try {
-      const response = await $fetch("/api/students", {
+      await $fetch("/api/students", {
         method: "POST",
         body: JSON.stringify(student),
       });
